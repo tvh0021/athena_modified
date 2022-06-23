@@ -365,6 +365,10 @@ class Mesh {
   void EnrollUserRefinementCondition(AMRFlagFunc amrflag);
   void EnrollUserMeshGenerator(CoordinateDirection dir, MeshGenFunc my_mg);
   void EnrollUserExplicitSourceFunction(SrcTermFunc my_func);
+
+  // added 06/22/2022, for function that allows modifications of primitive variables in a user defined source term
+  void EnrollUserRadSourceFunction(RadSrcTermFunc my_func);
+
   void EnrollUserTimeStepFunction(TimeStepFunc my_func);
   void AllocateUserHistoryOutput(int n);
   void EnrollUserHistoryOutput(int i, HistoryOutputFunc my_func, const char *name,
