@@ -1,0 +1,146 @@
+<job>
+
+problem_id      = star_wind # problem ID: basename of output filenames
+restart_flag    = 0 # 0 for new job, 1 for restart
+restart_file    = res000aa # name of restart file
+maxout          = 0 # Output blocks number from 1 -> maxout
+
+
+<time>
+cfl_number         = 0.3 # The Courant, Friedrichs, & Lewy (CFL) Number
+nlim            = -1 # cycle limit
+tlim            = 1.35 # time limit (in 10^3 years)
+maxout          = 3 # Output blocks number from 1 -> maxout
+
+<output1>
+file_type = hst # History data dump
+dt      = 0.01 # time increment between outputs
+variable = prim
+
+<output2>
+file_type = hdf5 # Binary data dump
+dt      = 0.01 # time increment between outputs
+variable = prim
+
+<output3>
+file_type = rst # restart file
+dt      = 0.01# time increment between outputs
+
+
+<mesh>
+
+nx1             = 128 # Number of zones in X-direction
+nx2             = 128 # Number of zones in Y-direction
+nx3             = 128
+x1min           = -1. # minimum value of X (in parsecs)
+x1max           = 1. # maximum value of X (in parsecs)
+x2min           = -1. # minimum value of Y (in parsecs)
+x2max           = 1. # maximum value of Y (in parsecs)
+x3min           = -1.
+x3max           = 1.
+x1rat           = 1.
+ix1_bc          =outflow# inner-I (X) boundary flag
+ox1_bc          =outflow# outer-I (X) boundary flag
+ix2_bc          =outflow# inner-J (Y) boundary flag
+ox2_bc          =outflow# outer-J (Y) boundary flag
+ix3_bc          =outflow
+ox3_bc          =outflow
+num_threads      = 1
+refinement   = static
+
+<refinement1>
+x1min = -0.5
+x1max = 0.5
+x2min = -0.5
+x2max = 0.5
+x3min = -0.5
+x3max = 0.5
+level = 1
+
+<refinement2>
+x1min = -0.25
+x1max = 0.25
+x2min = -0.25
+x2max = 0.25
+x3min = -0.25
+x3max = 0.25
+level = 2
+
+<refinement3>
+x1min = -0.125
+x1max = 0.125
+x2min = -0.125
+x2max = 0.125
+x3min = -0.125
+x3max = 0.125
+level = 3
+
+
+<refinement4>
+x1min = -0.0625
+x1max = 0.0625
+x2min = -0.0625
+x2max = 0.0625
+x3min = -0.0625
+x3max = 0.0625
+level = 4
+
+<refinement5>
+x1min = -0.03125
+x1max = 0.03125
+x2min = -0.03125
+x2max = 0.03125
+x3min = -0.03125
+x3max = 0.03125
+level = 5
+
+
+<refinement6>
+x1min = -0.015625
+x1max = 0.015625
+x2min = -0.015625
+x2max = 0.015625
+x3min = -0.015625
+x3max = 0.015625
+level = 6
+
+<refinement7>
+x1min = -0.0078125
+x1max = 0.0078125
+x2min = -0.0078125
+x2max = 0.0078125
+x3min = -0.0078125
+x3max = 0.0078125
+level = 7
+
+<refinement8>
+x1min = -0.00390625
+x1max = 0.00390625
+x2min = -0.00390625
+x2max = 0.00390625
+x3min = -0.00390625
+x3max = 0.00390625
+level = 8
+
+<refinement9>
+x1min = -0.001953125
+x1max = 0.001953125
+x2min = -0.001953125
+x2max = 0.001953125
+x3min = -0.001953125
+x3max = 0.001953125
+level = 9
+
+
+<meshblock>
+nx1 = 16
+nx2 = 16
+nx3 = 16
+
+<hydro>
+gamma           = 1.66667 # gamma = C_p/C_v
+dfloor = 1.0e-7
+pfloor = 1.0e-10
+
+<problem>
+GM                              = 0.0191744 # GM in code units (4e6 solar masses)
