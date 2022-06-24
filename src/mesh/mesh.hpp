@@ -312,6 +312,7 @@ class Mesh {
   BValFunc BoundaryFunction_[6];
   AMRFlagFunc AMRFlag_;
   SrcTermFunc UserSourceTerm_;
+  RadSrcTermFunc UserRadSourceTerm_;
   TimeStepFunc UserTimeStep_;
   HistoryOutputFunc *user_history_func_;
   MetricFunc UserMetric_;
