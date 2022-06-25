@@ -654,8 +654,7 @@ void MeshBlock::InitUserMeshBlockData(ParameterInput *pin){
     int N_cells_per_boundary_radius = pin->GetOrAddInteger("problem", "boundary_radius", 2);
 
     
-    std::string file_name,cooling_file_name;
-    file_name =  pin->GetString("problem","filename");
+    std::string cooling_file_name;
     cooling_file_name = pin->GetOrAddString("problem","cooling_file","lambda.tab");
     
     Real dx_min,dy_min,dz_min;
