@@ -723,8 +723,8 @@ void MeshBlock::ProblemGenerator(ParameterInput *pin)
   Real gm1 = peos->GetGamma() - 1.0;
   /* Set up a uniform medium */
   /* For now, make the medium almost totally empty */
-  da = 1.0e-8;
-  pa = 1.0e-10;
+  da = 1.0e-1;
+  pa = 1.0e-5;
   ua = 0.0;
   va = 0.0;
   wa = 0.0;
