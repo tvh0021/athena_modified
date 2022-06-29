@@ -725,7 +725,7 @@ void MeshBlock::ProblemGenerator(ParameterInput *pin)
   /* For now, make the medium almost totally empty */
   da = 1.0;
   pa = 1.0e-5;
-  ua = 0.1;
+  ua = 0.0;
   va = 0.0;
   wa = 0.0;
   bxa = 1e-4;
