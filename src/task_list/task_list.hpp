@@ -331,8 +331,8 @@ const TaskID DIFFUSE_HYD(47);
 const TaskID DIFFUSE_FLD(48);
 
 const TaskID CALC_SCLRFLX(49);
-const TaskID SEND_SCLRFLX(50);
-const TaskID RECV_SCLRFLX(51);
+//const TaskID SEND_SCLRFLX(50);
+//const TaskID RECV_SCLRFLX(51);
 const TaskID INT_SCLR(52);
 const TaskID SEND_SCLR(53);
 const TaskID RECV_SCLR(54);
