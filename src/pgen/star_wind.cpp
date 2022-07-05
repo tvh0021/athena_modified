@@ -768,7 +768,7 @@ if (MAGNETIC_FIELDS_ENABLED){
  
   }
   
-  for (i=il; i<=iu; i++) {
+  for (i=i; i<=iu; i++) {
   
     phydro->u(IDN,k,j,i) = da;
     phydro->u(IM1,k,j,i) = -1.0*da*ua;
