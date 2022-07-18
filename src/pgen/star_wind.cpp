@@ -735,7 +735,7 @@ void MeshBlock::ProblemGenerator(ParameterInput *pin)
 
   for (k=kl; k<=ku; k++) {
   for (j=jl; j<=ju; j++) {
-  for (i=il; i<=iu/2; i++) {
+  for (i=il; i<=iu; i++) {
 
 
     phydro->u(IDN,k,j,i) = da;
@@ -743,37 +743,9 @@ void MeshBlock::ProblemGenerator(ParameterInput *pin)
     phydro->u(IM2,k,j,i) = da*va;
     phydro->u(IM3,k,j,i) = da*wa;
 
-
-if (MAGNETIC_FIELDS_ENABLED){
-    pfield->b.x1f(k,j,i) = bxa;
-    pfield->b.x2f(k,j,i) = bya;
-    pfield->bcc(IB1,k,j,i) = bxa;
-    pfield->bcc(IB2,k,j,i) = bya;
-    pfield->bcc(IB3,k,j,i) = bza;
-    if (i == ie) pfield->b.x1f(k,j,i+1) = bxa;
-    if (j == je) pfield->b.x2f(k,j+1,i) = bya;
-}
-
-    pressure = pa;
-#ifndef ISOTHERMAL
-    phydro->u(IEN,k,j,i) = pressure/gm1;
-if (MAGNETIC_FIELDS_ENABLED){
-      phydro->u(IEN,k,j,i) +=0.5*(bxa*bxa + bya*bya + bza*bza);
-}
-     phydro->u(IEN,k,j,i) += 0.5*da*(ua*ua + va*va + wa*wa);
-#endif /* ISOTHERMAL */
-
-      if (RELATIVISTIC_DYNAMICS)  // this should only ever be SR with this file
-        phydro->u(IEN,k,j,i) += da;
- 
-  }
-  
-  for (i=i; i<=iu; i++) {
-  
-    phydro->u(IDN,k,j,i) = da;
-    phydro->u(IM1,k,j,i) = -1.0*da*ua; // initialize an opposite-direction-moving half of gas on the right
-    phydro->u(IM2,k,j,i) = da*va;
-    phydro->u(IM3,k,j,i) = da*wa;
+    if (pcoord->x1v(i) > 0.0) {
+      phydro->u(IM1,k,j,i) = -1.0*da*ua;
+    }
 
 
 if (MAGNETIC_FIELDS_ENABLED){
