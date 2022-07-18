@@ -771,7 +771,7 @@ if (MAGNETIC_FIELDS_ENABLED){
   for (i=i; i<=iu; i++) {
   
     phydro->u(IDN,k,j,i) = da;
-    phydro->u(IM1,k,j,i) = -1.0*da*ua;
+    phydro->u(IM1,k,j,i) = -1.0*da*ua; // initialize an opposite-direction-moving half of gas on the right
     phydro->u(IM2,k,j,i) = da*va;
     phydro->u(IM3,k,j,i) = da*wa;
 
