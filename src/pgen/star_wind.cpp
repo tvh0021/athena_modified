@@ -743,9 +743,9 @@ void MeshBlock::ProblemGenerator(ParameterInput *pin)
     phydro->u(IM2,k,j,i) = da*va;
     phydro->u(IM3,k,j,i) = da*wa;
 
-    if (pcoord->x1v(i) > 0.0) {
+    /*if (pcoord->x1v(i) > 0.0) {
       phydro->u(IM1,k,j,i) = -1.0*da*ua;
-    }
+    }*/
 
 
 if (MAGNETIC_FIELDS_ENABLED){
