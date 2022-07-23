@@ -68,8 +68,12 @@ HydroSourceTerms::HydroSourceTerms(Hydro *phyd, ParameterInput *pin) {
   */
 
   // NEW CODE ADDED 06/13/2022, based on Sean Ressler's instruction to allow use of cartesian 
-  // coordinates for point source gravity 
+  // coordinates for point source gravity
+  flag_point_mass_ = false;
   gm_ = pin->GetOrAddReal("problem", "GM", 0.0);
+  bool orbital_advection_defined
+         = (pin->GetOrAddInteger("orbital_advection","OAorder",0)!=0)?
+           true : false;
   if (gm_ != 0.0) {
     if (std::strcmp(COORDINATE_SYSTEM, "spherical_polar") == 0
       || (std::strcmp(COORDINATE_SYSTEM, "cylindrical") == 0
@@ -85,11 +89,22 @@ HydroSourceTerms::HydroSourceTerms(Hydro *phyd, ParameterInput *pin) {
           <<"Check <problem> GM parameter in the input file." << std::endl;
       ATHENA_ERROR (msg);
     }
+    if (orbital_advection_defined) {
+      hydro_sourceterms_defined = true;
+    } else if (std::strcmp(COORDINATE_SYSTEM, "cylindrical") == 0
+               && phyd->pmy_block->block_size.nx3>1) {
+      std::stringstream msg;
+      msg << "### FATAL ERROR in HydroSourceTerms constructor" << std::endl
+          << "The point mass gravity deos not work in the 3D cylindrical "
+          << "coordinates without orbital advection." << std::endl
+          << "Check <problem> GM parameter in the input file." << std::endl;
+      ATHENA_ERROR(msg);
+    } else {
+      flag_point_mass_ = true;
+      hydro_sourceterms_defined = true;
+    }
   } // END NEW CODE
 
-  bool orbital_advection_defined
-         = (pin->GetOrAddInteger("orbital_advection","OAorder",0)!=0)?
-           true : false;
   g1_ = pin->GetOrAddReal("hydro","grav_acc1",0.0);
   if (g1_ != 0.0) hydro_sourceterms_defined = true;
 
